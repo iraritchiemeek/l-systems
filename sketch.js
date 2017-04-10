@@ -1,22 +1,17 @@
-var axiom = "0"
+var axiom = "F"
 var sentence = axiom
-var len = 200
+var len = 10
 var angle
 
 var rules = []
 
 rules[0] = {
-	a: '1',
-	b: '11'
-}
-
-rules[1] = {
-	a: '0',
-	b: '1[0]0'
+	a: 'F',
+	b: 'F+F-F-F+F'
 }
 
 function generate() {
-	len *= 0.5
+	// len *= 0.5
 	var next_sentence = ""
 	for (var i = 0; i < sentence.length; i++) {
 		var current = sentence.charAt(i)
@@ -39,27 +34,27 @@ function generate() {
 function turtle() {
 	background(51)
 	resetMatrix()
-	translate(width/2, height)
+	translate(width / 2, height)
 	stroke(255)
 	for (var i = 0; i < sentence.length; i++) {
 		var current = sentence.charAt(i)
 
-		if(current == "1" || current == "0" ) {
+		if(current == "F") {
 			line(0,0,0, -len)
 			translate(0, -len)
-		} else if (current == "[") {
-			push()
-			rotate(angle)
-		} else if (current == "]") {
-			pop()
+		} else if (current == "+") {
+			// push()
 			rotate(-angle)
+		} else if (current == "-") {
+			// pop()
+			rotate(angle)
 		}
 	}
 }
 
 function setup() {
 	createCanvas(400, 400)
-	angle = radians(45)
+	angle = radians(90)
 	background(51)
 	turtle()
 	var button = createButton('generate')
