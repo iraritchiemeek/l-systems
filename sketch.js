@@ -1,4 +1,4 @@
-var axiom = "F-G-G"
+var axiom = "A"
 var sentence = axiom
 var len = 4
 var angle
@@ -6,13 +6,13 @@ var angle
 var rules = []
 
 rules[0] = {
-	a: 'F',
-	b: 'F-G+F+G-F'
+	a: 'A',
+	b: '+B-A-B+'
 }
 
 rules[1] = {
-	a: 'G',
-	b: 'GG'
+	a: 'B',
+	b: '-A+B+A-'
 }
 
 function generate() {
@@ -44,22 +44,22 @@ function turtle() {
 	for (var i = 0; i < sentence.length; i++) {
 		var current = sentence.charAt(i)
 
-		if(current == "F" || current == "G") {
+		if(current == "A" || current == "B") {
 			line(0,0,0, -len)
 			translate(0, -len)
 		} else if (current == "+") {
 			// push()
-			rotate(-angle)
+			rotate(angle)
 		} else if (current == "-") {
 			// pop()
-			rotate(angle)
+			rotate(-angle)
 		}
 	}
 }
 
 function setup() {
 	createCanvas(800, 800)
-	angle = radians(120)
+	angle = radians(60)
 	background(51)
 	turtle()
 	var button = createButton('generate')
